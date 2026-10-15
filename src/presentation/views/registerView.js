@@ -51,8 +51,8 @@ export function showRegisterView(container, presenter) {
 
                     <div class="form-group">
                         <label for="register-password">
-                            Contraseña
-                        </label>
+                            Contraiseña
+                          
 
                         <input
                             type="password"
@@ -61,8 +61,20 @@ export function showRegisterView(container, presenter) {
                             placeholder="Crea una contraseña"
                             required
                         >
-                    </div>
+                </div>
 
+                  <div class="form-group">
+                        <label for="register-usuari">
+                            tipo de usuario
+                              <select id="user-type" name="userType" required>
+        <option value="">Selecciona tu tipo de usuario</option>
+        <option value="estudiante">Estudiante</option>
+        <option value="profesor">Profesor</option>
+    </select>
+  
+                        >
+                </div>
+  
                     <button
                         type="submit"
                         class="button button-primary"
@@ -106,7 +118,8 @@ export function showRegisterView(container, presenter) {
         const userData = {
             name: formData.get("name"),
             email: formData.get("email"),
-            password: formData.get("password")
+            password: formData.get("password"),
+            userType: formData.get("userType")
         };
 
         presenter.register(userData);

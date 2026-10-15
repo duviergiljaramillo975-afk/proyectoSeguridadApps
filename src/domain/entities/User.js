@@ -18,12 +18,15 @@ export class User {
         id = null,
         name,
         email,
-        passwordHash = null
+        passwordHash = null,
+        userType
+
     }) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.passwordHash = passwordHash;
+        this.userType = userType; 
     }
 
 }

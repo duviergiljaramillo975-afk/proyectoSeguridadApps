@@ -42,7 +42,7 @@ export function showLoginView(container, presenter) {
                             required
                         >
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="login-password">
                             Contraseña
@@ -67,8 +67,8 @@ export function showLoginView(container, presenter) {
                 </form>
                 <div class="demo-credentials">
     <p><strong>Credenciales de prueba</strong></p>
-    <p>Correo: demo@gestorescolar.com</p>
-    <p>Contraseña: Demo1234</p>
+    <p>Correo:robinsonmontes@gmail.com</p>
+    <p>Contraseña: robin123</p>
 </div>
 
                 <div class="auth-footer">

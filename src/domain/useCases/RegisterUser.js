@@ -5,32 +5,6 @@
  * registrar un nuevo usuario.
  */
 
-import { User } from "../entities/User.js";
-
-export class RegisterUser {
-
-    constructor(userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    async execute(user) {
-
-        const existingUser =
-            await this.userRepository.findByEmail(user.email);
-
-        if (existingUser) {
-            throw new Error(
-                "Ya existe un usuario con este correo."
-            );
-        }
-
-        return await this.userRepository.save(user);
-    }
-
-}
-    /*
-
-
 
 import { User } from "../entities/User.js";
 
@@ -62,10 +36,12 @@ export class RegisterUser {
         const user = new User({
             name: userData.name,
             email: userData.email,
-            passwordHash: passwordData
+            passwordHash: passwordData,
+            userType:userData.userType
         });
 
         return await this.userRepository.save(user);
     }
+    
 }
-    */
+    
