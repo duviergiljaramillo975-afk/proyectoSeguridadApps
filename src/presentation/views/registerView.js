@@ -51,8 +51,8 @@ export function showRegisterView(container, presenter) {
 
                     <div class="form-group">
                         <label for="register-password">
-                            Contraiseña
-                          
+                            Contraseña
+                        </label>
 
                         <input
                             type="password"
@@ -61,20 +61,23 @@ export function showRegisterView(container, presenter) {
                             placeholder="Crea una contraseña"
                             required
                         >
-                </div>
+                    </div>
 
-                  <div class="form-group">
-                        <label for="register-usuari">
-                            tipo de usuario
-                              <select id="user-type" name="userType" required>
-        <option value="">Selecciona tu tipo de usuario</option>
-        <option value="estudiante">Estudiante</option>
-        <option value="profesor">Profesor</option>
-    </select>
-  
+                    <div class="form-group">
+                        <label for="register-role">
+                            Tipo de usuario
+                        </label>
+
+                        <select
+                            id="register-role"
+                            name="role"
+                            required
                         >
-                </div>
-  
+                            <option value="estudiante">Estudiante</option>
+                            <option value="profesor">Profesor</option>
+                        </select>
+                    </div>
+
                     <button
                         type="submit"
                         class="button button-primary"
@@ -104,6 +107,33 @@ export function showRegisterView(container, presenter) {
                 ></p>
 
             </div>
+            
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p><strong>Nombre:</strong> <span id="confirmName"></span></p>
+        <p><strong>Email:</strong> <span id="confirmEmail"></span></p>
+        <p><strong>Password:</strong> <span id="confirmPassword"></span></p>
+        <p><strong>Role:</strong> <span id="confirmRole"></span></p>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary btnConfirmar">Confirmar</button>
+      </div>
+    </div>
+  </div>
+</div>
         </section>
     `;
 
@@ -114,15 +144,34 @@ export function showRegisterView(container, presenter) {
         event.preventDefault();
 
         const formData = new FormData(registerForm);
-
+        const modalElemento = document.getElementById("staticBackdrop");
+        const modal = new bootstrap.Modal(modalElemento);
         const userData = {
             name: formData.get("name"),
             email: formData.get("email"),
             password: formData.get("password"),
-            userType: formData.get("userType")
+            role: formData.get("role")
         };
+        document.getElementById("confirmName").textContent = userData.name;
+        document.getElementById("confirmEmail").textContent = userData.email;
+        document.getElementById("confirmPassword").textContent = userData.password;
+        document.getElementById("confirmRole").textContent = userData.role;
+
+        registerForm.dataset.userData = JSON.stringify(userData);
+        
+        modal.show();
+        // presenter.register(userData);
+    
+
+      //  presenter.register(userData);
+    });
+    document.getElementById("btnConfirmar").addEventListener("click", () => {
+        const userData = JSON.parse(registerForm.dataset.userData);
 
         presenter.register(userData);
+        const modalId = document.getElementById("staticBackdrop");
+        const modal = bootstrap.Modal.getInstance(modalId);
+        modal.hide();
     });
 
     const loginButton =
