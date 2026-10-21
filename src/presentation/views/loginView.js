@@ -93,8 +93,10 @@ export function showLoginView(container, presenter) {
                 ></p>
 
             </div>
-
         </section>
+
+    modal.style.display = "none";
+});
     `;
 
     /*
@@ -158,6 +160,10 @@ export function showLoginMessage(message) {
         document.getElementById("login-message");
 
     if (messageElement) {
-        messageElement.textContent = message;
+        messageElement.innerHTML = `
+        <div class="alert alert-danger" role="alert">
+            ${message}
+        </div>
+        `;
     }
 }

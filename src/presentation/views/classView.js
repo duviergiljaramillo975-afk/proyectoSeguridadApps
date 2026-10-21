@@ -9,7 +9,8 @@
  *
  * NO contiene lógica de negocio.
  */
-
+import {consultaNota } from "../../domain/servicios/notasestudiantes.js";
+import { validarUsuario } from "../../domain/servicios/servicio.js";
 let currentPresenter = null;
 
 export function showClassView(
@@ -266,32 +267,41 @@ export function renderClasses(
                 <div class="class-card-actions">
 
                     <button
-                        class="button button-secondary"
+                        class="button button-secondary btn-editar"
                         data-action="edit"
                         data-id="${classItem.id}"
+
                     >
                         Editar
                     </button>
 
                     <button
-                        class="button button-danger"
+                        class="button button-danger btn-eliminar"
                         data-action="delete"
-                        data-id="${classItem.id}"
-                    >
+                        data-id="${classItem.id}">
                         Eliminar
                     </button>
 
+
+                </div>
+
+                <div class="class-card-actions">
+                    <label for="Tarjeta">ver nota </label>
+                    <button type="button" id="btn-consultar" class="btn btn-primary"> 
+                   consultar nota
+                </button>
+               
+                </div>
+                  <div id="resultado">
                 </div>
 
             </article>
 
         `
     ).join("");
-
-    /*
-     * Eventos de Editar
-     */
-
+    
+    validarUsuario();
+    consultaNota();
     list
         .querySelectorAll(
             '[data-action="edit"]'

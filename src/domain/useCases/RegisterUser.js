@@ -37,7 +37,8 @@ export class RegisterUser {
             name: userData.name,
             email: userData.email,
             passwordHash: passwordData,
-            userType:userData.userType
+            userType:userData.userType,
+            tarjeta: userData.tarjeta
         });
 
         return await this.userRepository.save(user);

@@ -367,5 +367,20 @@ body {
 
         align-items: flex-start;
     }
+    #numero-identificacion {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    margin: 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+}
+.identificacion-caja h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 12px;
+}
 
 }

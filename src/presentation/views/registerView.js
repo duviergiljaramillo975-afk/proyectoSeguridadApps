@@ -63,6 +63,19 @@ export function showRegisterView(container, presenter) {
                         >
                     </div>
 
+                <div class="form-group">
+                        <label for="register-password">
+                            Ingresa tu número de identificación
+                        </label>
+
+                        <input
+                            type="identificacion"
+                            id="register-identificacion"
+                            name="tarjeta"
+                            required
+                        >
+                </div>
+
                     <div class="form-group">
                         <label for="register-role">
                             Tipo de usuario
@@ -123,13 +136,14 @@ export function showRegisterView(container, presenter) {
         <p><strong>Nombre:</strong> <span id="confirmName"></span></p>
         <p><strong>Email:</strong> <span id="confirmEmail"></span></p>
         <p><strong>Password:</strong> <span id="confirmPassword"></span></p>
+        <p><strong>Tarjeta ID:</strong> <span id="confirmTarjeta"></span></p>
         <p><strong>Role:</strong> <span id="confirmRole"></span></p>
 
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary btnConfirmar">Confirmar</button>
+        <button type="button" id="btnConfirmar" class="btn btn-primary btnConfirmar">Confirmar</button>
       </div>
     </div>
   </div>
@@ -150,11 +164,13 @@ export function showRegisterView(container, presenter) {
             name: formData.get("name"),
             email: formData.get("email"),
             password: formData.get("password"),
+            tarjeta: formData.get("tarjeta"),
             role: formData.get("role")
         };
         document.getElementById("confirmName").textContent = userData.name;
         document.getElementById("confirmEmail").textContent = userData.email;
         document.getElementById("confirmPassword").textContent = userData.password;
+        document.getElementById("confirmTarjeta").textContent = userData.tarjeta;
         document.getElementById("confirmRole").textContent = userData.role;
 
         registerForm.dataset.userData = JSON.stringify(userData);
@@ -182,11 +198,15 @@ export function showRegisterView(container, presenter) {
     });
 }
 
-export function showRegisterMessage(message) {
+export function showRegisterMessage(message, type="success" ) {
     const messageElement =
         document.getElementById("register-message");
 
     if (messageElement) {
-        messageElement.textContent = message;
+        messageElement.innerHTML =`
+        <div class="alert alert-${type}" role="alert">
+        ${message}       
+        </div>
+        `;
     }
 }

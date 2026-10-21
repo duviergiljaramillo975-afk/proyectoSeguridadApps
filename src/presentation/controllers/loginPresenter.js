@@ -32,7 +32,7 @@ export class LoginPresenter {
                     credentials
                 );
             console.log("Usuario autenticado:",user);
-
+            localStorage.setItem("usuarioActivo",JSON.stringify(user));
             showClassView(
                 this.container,
                 this.classPresenter

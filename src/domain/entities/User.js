@@ -19,7 +19,8 @@ export class User {
         name,
         email,
         passwordHash = null,
-        userType
+        userType,
+        tarjeta
 
     }) {
         this.id = id;
@@ -27,6 +28,7 @@ export class User {
         this.email = email;
         this.passwordHash = passwordHash;
         this.userType = userType; 
+        this.tarjeta = tarjeta;
     }
 
 }
